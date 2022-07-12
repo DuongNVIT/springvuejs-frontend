@@ -47,9 +47,10 @@ export default {};
 }
 
 .item-infor {
-  padding: 4px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
+
 }
 
 .item-name {
@@ -76,7 +77,24 @@ export default {};
 }
 
 .rate-add {
-    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
+.rate {
+  color: rgb(192, 192, 28);
+  font-size: 12px;
+}
+
+.add {
+  background-color: red;
+  color: white;
+  padding: 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border-radius: 3px;
+}
 </style>

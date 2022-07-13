@@ -1,6 +1,6 @@
 <template>
     <div class="cate-wrapper">
-        <h1 class="heading"><i class="fa-solid fa-bars"></i>Danh mục sản phẩm</h1>
+        <h1 class="heading"><i class="fa-solid fa-bars"></i>Danh mục</h1>
         <ul class="list">
             <li class="item">Giày dép</li>
             <li class="item">Quần áo</li>
@@ -28,15 +28,17 @@ export default {
     display: flex;
     align-items: center;
     padding: 10px 8px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 600;
     text-align: left;
     border-bottom: 1px solid #ccc;
+    color: #333;
 }
 
 .heading i {
-    font-size: 20px;
+    font-size: 15px;
     margin-right: 4px;
+    color: #333;
 }
 
 .list {
@@ -48,10 +50,11 @@ export default {
 
 .item {
     display: block;
-    padding: 10px 20px;
+    padding: 8px 24px;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 15px;
     text-align: left;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .item:hover {

@@ -39,6 +39,14 @@ export default {};
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
+  transition: all 0.2s ease-in-out;
+  border-radius: 3px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-wrapper:hover {
+  cursor: pointer;
+  transform: translateY(-1px);
 }
 
 .item-img img {

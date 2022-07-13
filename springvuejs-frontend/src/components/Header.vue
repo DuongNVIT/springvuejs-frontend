@@ -4,13 +4,33 @@
       <div class="wrapper">
         <div class="logo-navbar">
           <div class="logo">
+            <i class="fa-solid fa-shop"></i>
             <h1 class="logo-name">ITShop</h1>
           </div>
-          <nav class="navbar"></nav>
+        </div>
+        <div class="search">
+          <input
+            type="text"
+            class="form-search"
+            placeholder="Nhập tên sản phẩm cần tìm kiếm"
+          />
+          <i class="fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="user">
-          <span class="welcome">Welcome </span>
-          <div class="user-name">Nguyen Van A</div>
+          <div class="user-cart">
+            <i class="fa-solid fa-cart-shopping">
+              <div class="cart-quantity">0</div>
+            </i>
+            My cart
+          </div>
+          <div class="user-name">
+            <i class="fa-solid fa-circle-user"></i>
+            duongnv
+          </div>
+        </div>
+        <div class="account">
+          <div class="logout">Sign Up</div>
+          <div class="login">Sign In</div>
         </div>
       </div>
     </div>
@@ -23,7 +43,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .header {
   height: 60px;
   width: 100%;
@@ -39,31 +59,120 @@ export default {
 }
 
 .logo-navbar {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo i {
+  color: white;
+  font-size: 25px;
+  margin-right: 8px;
 }
 
 .logo-name {
-	font-size: 20px;
-	margin: 0;
-	padding: 0;
-	color: #fff;
-	font-weight: 400;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-weight: 400;
 }
 
+.search {
+  background-color: #fff;
+  padding: 4px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.form-search {
+  border: none;
+  outline: none;
+  width: 300px;
+  font-size: 13px;
+}
+
+.search i {
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  /* padding: 10px; */
+  border-radius: 3px;
+  padding: 6px 10px;
+}
+
+.search i:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
 .user {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 20px;
-	color: #fff;
-	font-weight: 400;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 400;
 }
 
-.welcome {
-	margin-right: 10px;
+.user-cart {
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-cart i {
+  position: relative;
+  margin-right: 15px;
+}
+
+.user-cart i .cart-quantity {
+  position: absolute;
+  bottom: 50%;
+  right: -40%;
+  font-size: 10px;
+  height: 15px;
+  width: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: red;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.login, .logout {
+  padding: 6px 16px;
+  border: 1px solid white;
+  border-radius: 3px;
+}
+
+.login {
+  margin-left: 10px;
+  background-color: #fff;
+  color: red;
+}
+
+.logout:hover, .login:hover {
+  background-color: #fff;
+  color: red;
+  cursor: pointer;
+  opacity: 0.9;
 }
 
 </style>

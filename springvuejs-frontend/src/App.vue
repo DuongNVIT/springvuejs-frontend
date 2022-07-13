@@ -3,22 +3,24 @@
   <div class="category">
     <div class="grid wide">
       <div class="row">
-        <div class="col l-3">
+        <div class="col l-2">
           <Category />
         </div>
-        <div class="col l-9">
+        <div class="col l-10">
           <h1 class="product-heading">Danh sách sản phẩm</h1>
           <ProductList />
         </div>
       </div>
     </div>
   </div>
+  <Login/>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
 import Category from "./components/Category.vue";
 import ProductList from "./components/ProductList.vue";
+import Login from "./components/Login.vue";
 
 export default {
   name: "App",
@@ -26,6 +28,7 @@ export default {
     Header,
     Category,
     ProductList,
+    Login
   },
 };
 </script>
@@ -54,7 +57,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 10px 8px;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   text-align: center;
   border-bottom: 1px solid #ccc;

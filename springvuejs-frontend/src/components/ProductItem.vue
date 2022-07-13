@@ -70,6 +70,7 @@ export default {};
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 8px 0;
 }
 
 .old-price {

@@ -1,5 +1,5 @@
 <template>
-  <Header />
+  <!-- <Header />
   <div class="category">
     <div class="grid wide">
       <div class="row">
@@ -14,21 +14,36 @@
     </div>
   </div>
   <Login/>
+  <Signup/>
+  <Cart/>
+  <Buy/>
+  <Footer/> -->
+  <!-- <HomePage/> -->
+  <router-view></router-view>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import Category from "./components/Category.vue";
-import ProductList from "./components/ProductList.vue";
-import Login from "./components/Login.vue";
-
+// import Header from "./components/Header.vue";
+// import Category from "./components/Category.vue";
+// import ProductList from "./components/ProductList.vue";
+// import Login from "./components/Login.vue";
+// import Signup from "./components/Signup.vue";
+// import Cart from "./components/Cart.vue";
+// import Buy from "./components/Buy.vue";
+// import Footer from "./components/Footer.vue";
+import HomePage from "./pages/HomePage.vue";
 export default {
   name: "App",
   components: {
-    Header,
-    Category,
-    ProductList,
-    Login
+    // Header,
+    // Category,
+    // ProductList,
+    // Login,
+    // Signup,
+    // Cart,
+    // Buy,
+    // Footer
+    HomePage
   },
 };
 </script>
@@ -48,24 +63,11 @@ export default {
 
 body {
   font-family: "Saira Condensed", sans-serif;
-  background-color: #ddd;
-}
-
-.product-heading {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 8px;
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-  border-bottom: 1px solid #ccc;
-  background-color: #fff;
-  margin-bottom: 20px;
+  background-color: rgb(240, 235, 235);
 }
 
 * {
   box-sizing: border-box;
 }
+
 </style>

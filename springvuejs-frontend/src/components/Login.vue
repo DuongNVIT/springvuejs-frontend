@@ -1,42 +1,70 @@
 <template>
   <div class="login-wrapper">
-    <div class="login-inner">
+    <div class="grid wide">
+      <div class="login-inner">
       <div class="login-heading">Sign in</div>
       <div class="login-content">
-        <input type="text" class="form-input" placeholder="Username" />
-        <input type="text" class="form-input" placeholder="Password" />
+        <input type="text" class="form-input" placeholder="Username" v-model="user.username"/>
+        <input type="password" class="form-input" placeholder="Password" v-model="user.password"/>
         <div class="submit">
           <div class="btn-forget">Forget password</div>
-          <button class="btn-login">Sign in</button>
+          <button @click="handleLogin" class="btn-login">Sign in</button>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
 
 <script>
+import authAPI from '../service/authAPI';
 export default {
   name: "Login",
+  data() {
+    return {
+      user: {
+        username: "",
+        password: "",
+      }
+    }
+  },
+  methods: {
+    handleLogin() {
+      console.log("vao login");
+      console.log(this.username);
+      console.log(this.password);
+      const response = authAPI.login({...this.$data.user});
+      console.log(response);
+    }
+  }
 };
 </script>
 
 <style scoped>
 
 .login-wrapper {
-  margin-left: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
 .login-inner {
   background-color: #fff;
   width: 350px;
+  height: 300px;
   padding: 15px 20px;
   border-radius: 3px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
 }
 
 .login-heading {
   color: #333;
   text-align: left;
-  font-size: 20px;
-  padding: 15px 0 25px 0;
+  font-size: 24px;
+  padding: 15px 0 40px 0;
 }
 
 .login-content {
@@ -49,7 +77,7 @@ export default {
   font-size: 15px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 3px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .form-input:focus {
@@ -63,7 +91,7 @@ export default {
 }
 
 .btn-forget {
-  font-size: 10px;
+  font-size: 13px;
   color: blue
 }
 

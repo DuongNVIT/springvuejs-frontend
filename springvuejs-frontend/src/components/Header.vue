@@ -16,7 +16,13 @@
           />
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-        <div class="user">
+        <!-- <div class="user">
+          <div class="user-noti">
+            <i class="fa-solid fa-bell">
+              <div class="noti-quantity">0</div>
+            </i>
+            Notification
+          </div>
           <div class="user-cart">
             <i class="fa-solid fa-cart-shopping">
               <div class="cart-quantity">0</div>
@@ -27,10 +33,10 @@
             <i class="fa-solid fa-circle-user"></i>
             duongnv
           </div>
-        </div>
+        </div> -->
         <div class="account">
-          <div class="logout">Sign Up</div>
-          <div class="login">Sign In</div>
+          <router-link to="/signup" class="logout">Sign Up</router-link>
+          <router-link to="/login" class="login">Sign In</router-link>
         </div>
       </div>
     </div>
@@ -48,6 +54,10 @@ export default {
   height: 60px;
   width: 100%;
   background-color: red;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 
 .wrapper {
@@ -95,7 +105,7 @@ export default {
 .form-search {
   border: none;
   outline: none;
-  width: 300px;
+  width: 400px;
   font-size: 13px;
 }
 
@@ -122,19 +132,19 @@ export default {
   font-weight: 400;
 }
 
-.user-cart {
+.user-cart, .user-noti {
   margin-right: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.user-cart i {
+.user-cart i, .user-noti i {
   position: relative;
   margin-right: 15px;
 }
 
-.user-cart i .cart-quantity {
+.user-cart i .cart-quantity, .user-noti i .noti-quantity {
   position: absolute;
   bottom: 50%;
   right: -40%;

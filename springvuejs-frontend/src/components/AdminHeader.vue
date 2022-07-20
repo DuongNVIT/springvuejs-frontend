@@ -33,8 +33,6 @@ export default {
     justify-content: center;
     color: white;
     margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
+
 </style>

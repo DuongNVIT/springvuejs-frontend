@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper" @click="closeAddProduct(false)">
     <div class="inner" @click.stop>
+      <h1 class="heading">Thêm mới sản phẩm</h1>
       <div class="grid">
         <div class="row">
           <div class="col l-3">
@@ -90,10 +91,20 @@ export default {
 }
 
 .inner {
-  padding: 20px;
+  padding: 30px;
   background-color: #fff;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
+}
+
+.heading {
+    font-size: 20px;
+    text-align: left;
+    font-weight: 600;
+    margin: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0 0 8px;
+    margin-bottom: 20px;
 }
 
 .avatar {

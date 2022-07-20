@@ -3,10 +3,10 @@
     <div class="grid wide">
       <div class="wrapper">
         <div class="logo-navbar">
-          <div class="logo">
+          <router-link to="/" class="logo">
             <i class="fa-solid fa-shop"></i>
             <h1 class="logo-name">ITShop</h1>
-          </div>
+          </router-link>
         </div>
         <div class="search">
           <input
@@ -16,28 +16,33 @@
           />
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-        <!-- <div class="user">
-          <div class="user-noti">
+        <div class="user">
+          <!-- <div class="user-noti">
             <i class="fa-solid fa-bell">
               <div class="noti-quantity">0</div>
             </i>
             Notification
-          </div>
-          <div class="user-cart">
+          </div> -->
+          <router-link to="/customer/cart" class="user-cart">
             <i class="fa-solid fa-cart-shopping">
               <div class="cart-quantity">0</div>
             </i>
             My cart
-          </div>
+          </router-link>
           <div class="user-name">
             <i class="fa-solid fa-circle-user"></i>
             duongnv
+            <ul class="user-infor-list">
+              <router-link to="/customer/information" class="user-infor-item">Thông tin cá nhân</router-link>
+              <router-link to="/customer/bill" class="user-infor-item">Đơn mua</router-link>
+              <li class="user-infor-item">Đăng xuất</li>
+            </ul>
           </div>
-        </div> -->
-        <div class="account">
+        </div>
+        <!-- <div class="account">
           <router-link to="/signup" class="logout">Sign Up</router-link>
           <router-link to="/login" class="login">Sign In</router-link>
-        </div>
+        </div> -->
       </div>
     </div>
   </header>
@@ -78,6 +83,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
 .logo i {
@@ -137,6 +143,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+  color: white
 }
 
 .user-cart i, .user-noti i {
@@ -158,6 +166,42 @@ export default {
   color: red;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.user-name {
+  position: relative;
+}
+
+.user-name:hover .user-infor-list {
+  display: block;
+}
+
+.user-infor-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05);
+  list-style: none;
+  width: 170px;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
+
+.user-infor-item {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  padding: 8px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+}
+
+.user-infor-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
 }
 
 .account {
@@ -184,5 +228,7 @@ export default {
   cursor: pointer;
   opacity: 0.9;
 }
+
+
 
 </style>

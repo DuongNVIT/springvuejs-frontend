@@ -1,9 +1,9 @@
 <template>
   <div>
     <Header />
-    <div class="homepage-wrapper">
+    <div class="wrapper">
       <div class="grid wide">
-        <div class="homepage-inner">
+        <div class="inner">
           <div class="row">
             <div class="col l-2">
               <Category />
@@ -35,12 +35,12 @@ export default {
 };
 </script>
 
-<style>
-.homepage-wrapper {
+<style scoped>
+.wrapper {
     margin-top: 60px;
 }
 
-.homepage-inner {
+.inner {
     padding-top: 40px;
 }
 

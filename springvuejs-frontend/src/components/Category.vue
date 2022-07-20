@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .cate-wrapper {
     width: 100%;
     background-color: #fff;

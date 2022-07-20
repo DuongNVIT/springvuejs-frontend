@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
 .footer-wrapper {
-    height: 100px;
+    height: 60px;
     background-color: red;
 }
 
@@ -24,6 +24,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff
+    color: #fff;
 }
 </style>

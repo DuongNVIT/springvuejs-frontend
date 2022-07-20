@@ -32,7 +32,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 .item-wrapper {
   width: 100%;
   background-color: #fff;

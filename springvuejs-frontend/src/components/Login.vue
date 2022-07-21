@@ -1,25 +1,31 @@
 <template>
-  <div class="wrapper">
-    <div class="grid wide">
-      <div class="inner">
+  <div class="login-wrapper">
+    <div class="login-inner">
       <div class="heading">Sign in</div>
       <div class="content">
-        <input type="text" class="form-input" placeholder="Username" v-model="user.username"/>
-        username: {{user.username}}
-        <input type="password" class="form-input" placeholder="Password" v-bind="user.password"/>
-        {{user.password}}
+        <input
+          type="text"
+          class="form-input"
+          placeholder="Username"
+          v-model="user.username"
+        />
+        <input
+          type="password"
+          class="form-input"
+          placeholder="Password"
+          v-model="user.password"
+        />
         <div class="submit">
           <div class="btn-forget">Forget password</div>
           <button @click="handleLogin" class="btn-login">Sign in</button>
         </div>
       </div>
     </div>
-    </div>
   </div>
 </template>
 
 <script>
-import authAPI from '../service/authAPI';
+import authAPI from "../service/authAPI";
 export default {
   name: "Login",
   data() {
@@ -27,39 +33,62 @@ export default {
       user: {
         username: "",
         password: "",
-      }
-    }
+      },
+    };
   },
   methods: {
     handleLogin() {
       console.log("vao login");
       console.log(this.username);
       console.log(this.password);
-      const response = authAPI.login({...this.$data.user});
+      const response = authAPI.login({ ...this.$data.user });
       console.log(response);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-
-.wrapper {
+.login-wrapper {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 0;
+  right: 0;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  animation: loginWrapper 0.4s ease-in;
 }
-.inner {
+.login-inner {
+  position: absolute;
   background-color: #fff;
   width: 350px;
   height: 300px;
   padding: 15px 20px;
   border-radius: 3px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: login 0.4s ease-in-out;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes login {
+  from {
+    opacity: 0;
+    top: -350px;
+  } to {
+    opacity: 1;
+    top: 50%;
+  }
+}
+
+@keyframes loginWrapper {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
 }
 
 .heading {
@@ -94,7 +123,7 @@ export default {
 
 .btn-forget {
   font-size: 13px;
-  color: blue
+  color: blue;
 }
 
 .btn-forget:hover {
@@ -113,7 +142,6 @@ export default {
 
 .btn-login:hover {
   opacity: 1;
-  cursor: pointer
+  cursor: pointer;
 }
-
 </style>

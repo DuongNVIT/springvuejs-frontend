@@ -16,14 +16,14 @@
           />
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-        <div class="user">
+        <!-- <div class="user"> -->
           <!-- <div class="user-noti">
             <i class="fa-solid fa-bell">
               <div class="noti-quantity">0</div>
             </i>
             Notification
           </div> -->
-          <router-link to="/customer/cart" class="user-cart">
+          <!-- <router-link to="/customer/cart" class="user-cart">
             <i class="fa-solid fa-cart-shopping">
               <div class="cart-quantity">0</div>
             </i>
@@ -38,19 +38,35 @@
               <li class="user-infor-item">Đăng xuất</li>
             </ul>
           </div>
-        </div>
-        <!-- <div class="account">
-          <router-link to="/signup" class="logout">Sign Up</router-link>
-          <router-link to="/login" class="login">Sign In</router-link>
         </div> -->
+        <div class="account">
+          <!-- <router-link to="/signup" class="logout">Sign Up</router-link> -->
+          <button class="logout" @click="showSignup = true">Sign Up</button>
+          <!-- <router-link to="/login" class="login" @click="showLogin = true">Sign In</router-link> -->
+          <button class="login" @click="showLogin = true">Sign In</button>
+        </div>
       </div>
     </div>
+    <Login v-if="showLogin"/>
+    <Signup v-if="showSignup"/>
   </header>
 </template>
 
 <script>
+import Login from './Login.vue'
+import Signup from './Signup.vue'
 export default {
   name: "Header",
+  data() {
+    return {
+      showLogin: false,
+      showSignup: false
+    }
+  },
+  components: {
+    Login,
+    Signup
+  }
 };
 </script>
 
@@ -214,12 +230,18 @@ export default {
   padding: 6px 16px;
   border: 1px solid white;
   border-radius: 3px;
+  text-decoration: none;
 }
 
 .login {
   margin-left: 10px;
   background-color: #fff;
   color: red;
+}
+
+.logout {
+  color: white;
+  background-color: red;
 }
 
 .logout:hover, .login:hover {

@@ -1,6 +1,9 @@
 <template>
-  <div class="wrapper" @click="closeAddProduct(false)">
-    <div class="inner" @click.stop>
+  <!-- <div class="wrapper" @click="closeAddProduct(false)"> -->
+  <div class="wrapper" @click.self="closeAddProduct(false)">
+    {{close}}
+    <!-- <div class="inner" @click.stop> -->
+    <div class="inner">
       <h1 class="heading">Thêm mới sản phẩm</h1>
       <div class="grid">
         <div class="row">

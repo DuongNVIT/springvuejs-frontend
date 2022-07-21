@@ -1,11 +1,13 @@
 <template>
-  <div class="login-wrapper">
+  <div class="wrapper">
     <div class="grid wide">
-      <div class="login-inner">
-      <div class="login-heading">Sign in</div>
-      <div class="login-content">
+      <div class="inner">
+      <div class="heading">Sign in</div>
+      <div class="content">
         <input type="text" class="form-input" placeholder="Username" v-model="user.username"/>
-        <input type="password" class="form-input" placeholder="Password" v-model="user.password"/>
+        username: {{user.username}}
+        <input type="password" class="form-input" placeholder="Password" v-bind="user.password"/>
+        {{user.password}}
         <div class="submit">
           <div class="btn-forget">Forget password</div>
           <button @click="handleLogin" class="btn-login">Sign in</button>
@@ -42,14 +44,14 @@ export default {
 
 <style scoped>
 
-.login-wrapper {
+.wrapper {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
-.login-inner {
+.inner {
   background-color: #fff;
   width: 350px;
   height: 300px;
@@ -60,14 +62,14 @@ export default {
   justify-content: space-between; */
 }
 
-.login-heading {
+.heading {
   color: #333;
   text-align: left;
   font-size: 24px;
   padding: 15px 0 40px 0;
 }
 
-.login-content {
+.content {
   display: flex;
   flex-direction: column;
 }

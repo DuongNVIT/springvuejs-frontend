@@ -5,12 +5,14 @@
         <div class="heading">
             <h1 class="name">Danh sách sản phẩm</h1>
             <button class="heading-btn" @click="showAddProduct = !showAddProduct"><i class="fa-solid fa-square-plus"></i>Thêm</button>
+            <!-- <button class="heading-btn" @click="showAddProduct = !showAddProduct"><i class="fa-solid fa-square-plus"></i>Thêm</button> -->
         </div>
         <div class="infor">
 
         </div>
     </div>
     <AddProduct v-if="showAddProduct" @closePopup="closePopup"/>
+    <!-- <AddProduct v-if="showAddProduct" v-bind:close="showAddProduct"/> -->
   </div>
 </template>
     
@@ -30,9 +32,10 @@ export default {
         }
     },
     components: {
-        AdminHeader,
-        AddProduct
-    }
+    AdminHeader,
+    AddProduct,
+    AdminHeader
+}
 }
 </script>
 

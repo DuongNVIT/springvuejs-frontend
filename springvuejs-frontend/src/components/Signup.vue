@@ -1,5 +1,5 @@
 <template>
-  <div class="signup-wrapper">
+  <div class="signup-wrapper" @click.self="hideSignup">
     <div class="signup-inner">
       <div class="signup-heading">Sign up</div>
       <div class="signup-content">
@@ -17,6 +17,11 @@
 <script>
 export default {
   name: "Signup",
+  methods: {
+    hideSignup() {
+      this.$emit("hideSignup");
+    }
+  }
 };
 </script>
 

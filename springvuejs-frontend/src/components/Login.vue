@@ -1,5 +1,5 @@
 <template>
-  <div class="login-wrapper">
+  <div class="login-wrapper" @click.self="hideLogin">
     <div class="login-inner">
       <div class="heading">Sign in</div>
       <div class="content">
@@ -44,6 +44,11 @@ export default {
       const response = authAPI.login({ ...this.$data.user });
       console.log(response);
     },
+    
+    hideLogin() {
+      this.$emit("hideLogin");
+      Object.defineProperties
+    }
   },
 };
 </script>

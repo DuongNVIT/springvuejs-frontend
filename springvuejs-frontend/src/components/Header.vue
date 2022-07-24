@@ -47,8 +47,8 @@
         </div>
       </div>
     </div>
-    <Login v-if="showLogin"/>
-    <Signup v-if="showSignup"/>
+    <Login v-if="showLogin" @hideLogin="showLogin = false"/>
+    <Signup v-if="showSignup" @hideSignup="showSignup = false"/>
   </header>
 </template>
 

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import authAPI from "../service/authAPI";
+import authService from "../service/authService";
 export default {
   name: "Login",
   data() {
@@ -37,12 +37,10 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      console.log("vao login");
-      console.log(this.username);
-      console.log(this.password);
-      const response = authAPI.login({ ...this.$data.user });
-      console.log(response);
+    async handleLogin() {
+      const response = await authService.login(this.$data.user);
+      if(response)
+      this.hideLogin();
     },
     
     hideLogin() {

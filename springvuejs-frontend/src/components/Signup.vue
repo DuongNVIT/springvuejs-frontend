@@ -3,11 +3,11 @@
     <div class="signup-inner">
       <div class="signup-heading">Sign up</div>
       <div class="signup-content">
-        <input type="text" class="form-input" placeholder="Username" />
-        <input type="text" class="form-input" placeholder="Password" />
-        <input type="text" class="form-input" placeholder="Confirm password" />
+        <input type="text" class="form-input" placeholder="Họ và tên" v-model="user.fullname"/>
+        <input type="text" class="form-input" placeholder="Tên đăng nhập" v-model="user.username"/>
+        <input type="text" class="form-input" placeholder="Email" v-model="user.email"/>
         <div class="submit">
-          <button class="btn-signup">Sign up</button>
+          <button class="btn-signup" @click="handleSignup">Sign up</button>
         </div>
       </div>
     </div>
@@ -15,11 +15,25 @@
 </template>
 
 <script>
+import authService from '../service/authService';
 export default {
   name: "Signup",
+  data() {
+    return {
+      user: {
+        fullname: "",
+        email: "",
+        username: ""
+      }
+    }
+  },
   methods: {
     hideSignup() {
       this.$emit("hideSignup");
+    },
+    async handleSignup() {
+      const res = await authService.signup(this.$data.user);
+      console.log(res);
     }
   }
 };

@@ -9,8 +9,7 @@ const productService = {
         } catch (err) {
             alert(err.message);
         }
-
-    } 
+    }
 }
 
 

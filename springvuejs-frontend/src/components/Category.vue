@@ -2,17 +2,30 @@
     <div class="cate-wrapper">
         <h1 class="heading"><i class="fa-solid fa-bars"></i>Danh mục</h1>
         <ul class="list">
-            <li class="item">Giày dép</li>
-            <li class="item">Quần áo</li>
-            <li class="item">Ti vi</li>
-            <li class="item">Tủ lạnh</li>
+            <li class="item" v-for="(category, index) in categories" :key="index">{{category.name}}</li>
         </ul>
     </div>
 </template>
 
 <script>
+import categoryService from "../service/categoryService.js";
 export default {
-    name: "Category"
+    name: "Category",
+    data() {
+        return {
+            categories: []
+        }
+    },
+    mounted() {
+        this.getCategories();
+    },
+    methods: {
+        async getCategories() {
+            const response = await categoryService.getAll();
+            console.response;
+            this.categories = [...response];
+        }
+    }
 }
 </script>
 

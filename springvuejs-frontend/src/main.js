@@ -4,10 +4,15 @@ import router from './router'
 import './gridsystem.css'
 import { createStore } from 'vuex'
 import storeConfig from './store'
+import createPersistedState from 'vuex-persistedstate'
 
-const store = createStore(storeConfig)
+const plugins = [createPersistedState()];
+const store = createStore({
+    ...storeConfig,
+    plugins
+})
 const app = createApp(App);
 app.use(router);
-// createApp(App).use().mount('#app')
+// app.use(plugins)
 app.use(store);
-app.mount('#app',)
+app.mount('#app');

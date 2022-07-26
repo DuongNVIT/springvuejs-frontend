@@ -3,9 +3,25 @@
     <div class="signup-inner">
       <div class="signup-heading">Sign up</div>
       <div class="signup-content">
-        <input type="text" class="form-input" placeholder="Họ và tên" v-model="user.fullname"/>
-        <input type="text" class="form-input" placeholder="Tên đăng nhập" v-model="user.username"/>
-        <input type="text" class="form-input" placeholder="Email" v-model="user.email"/>
+        <input
+          type="text"
+          class="form-input"
+          placeholder="Họ và tên"
+          v-model="user.fullname"
+        />
+        <input
+          type="text"
+          class="form-input"
+          placeholder="Tên đăng nhập"
+          v-model="user.username"
+        />
+        <input
+          type="text"
+          class="form-input"
+          placeholder="Email"
+          v-model="user.email"
+        />
+        <p v-if="message" class="signup-message">{{ message }}</p>
         <div class="submit">
           <button class="btn-signup" @click="handleSignup">Sign up</button>
         </div>
@@ -24,7 +40,9 @@ export default {
         fullname: "",
         email: "",
         username: ""
-      }
+      },
+      message: "",
+
     }
   },
   methods: {
@@ -32,8 +50,16 @@ export default {
       this.$emit("hideSignup");
     },
     async handleSignup() {
-      const res = await authService.signup(this.$data.user);
-      console.log(res);
+      try {
+        const res = await authService.signup(this.$data.user);
+
+        console.log(res);
+        this.hideSignup();
+      } catch (e) {
+        console.log(e.message)
+        console.log(e.response.data)
+        this.$data.message = e.response.data.message;
+      }
     }
   }
 };
@@ -66,7 +92,8 @@ export default {
   from {
     opacity: 0;
     top: -350px;
-  } to {
+  }
+  to {
     opacity: 1;
     top: 50%;
   }
@@ -75,7 +102,8 @@ export default {
 @keyframes signupWrapper {
   from {
     opacity: 0;
-  } to {
+  }
+  to {
     opacity: 1;
   }
 }
@@ -118,6 +146,14 @@ export default {
 .btn-forget:hover {
   opacity: 0.7;
   cursor: pointer;
+}
+
+.signup-message {
+  color: red;
+  margin: 0;
+  text-align: left;
+  margin-top: -20px;
+  margin-bottom: 15px;
 }
 
 .btn-signup {

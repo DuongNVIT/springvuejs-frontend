@@ -1,3 +1,5 @@
 export default {
-    count: state => state.count
+    isAuthenticated: state => state.isAuthenticated,
+    username: state => state.username,
+    userid: state => state.userid
 }

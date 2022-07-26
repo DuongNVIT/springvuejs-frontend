@@ -16,14 +16,14 @@
           />
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-        <!-- <div class="user"> -->
-          <!-- <div class="user-noti">
+        <div class="user" v-if="isAuthenticated">
+          <div class="user-noti">
             <i class="fa-solid fa-bell">
               <div class="noti-quantity">0</div>
             </i>
             Notification
-          </div> -->
-          <!-- <router-link to="/customer/cart" class="user-cart">
+          </div>
+          <router-link to="/customer/cart" class="user-cart">
             <i class="fa-solid fa-cart-shopping">
               <div class="cart-quantity">0</div>
             </i>
@@ -31,42 +31,63 @@
           </router-link>
           <div class="user-name">
             <i class="fa-solid fa-circle-user"></i>
-            duongnv
+            {{username}}
             <ul class="user-infor-list">
-              <router-link to="/customer/information" class="user-infor-item">Thông tin cá nhân</router-link>
-              <router-link to="/customer/bill" class="user-infor-item">Đơn mua</router-link>
-              <li class="user-infor-item">Đăng xuất</li>
+              <router-link to="/customer/information" class="user-infor-item"
+                >Thông tin cá nhân</router-link
+              >
+              <router-link to="/customer/bill" class="user-infor-item"
+                >Đơn mua</router-link
+              >
+              <li class="user-infor-item" @click="handleLogout">Đăng xuất</li>
             </ul>
           </div>
-        </div> -->
-        <div class="account">
-          <!-- <router-link to="/signup" class="logout">Sign Up</router-link> -->
+        </div>
+        <div class="account" v-if="!isAuthenticated">
           <button class="logout" @click="showSignup = true">Sign Up</button>
-          <!-- <router-link to="/login" class="login" @click="showLogin = true">Sign In</router-link> -->
           <button class="login" @click="showLogin = true">Sign In</button>
         </div>
       </div>
     </div>
-    <Login v-if="showLogin" @hideLogin="showLogin = false"/>
-    <Signup v-if="showSignup" @hideSignup="showSignup = false"/>
+    <Login
+      v-if="showLogin"
+      @hideLogin="showLogin = false"
+      @loginSuccess="handleSuccess"
+    />
+    <Signup v-if="showSignup" @hideSignup="showSignup = false" />
   </header>
 </template>
 
 <script>
-import Login from './Login.vue'
-import Signup from './Signup.vue'
+import { mapGetters } from "vuex";
+import Login from "./Login.vue";
+import Signup from "./Signup.vue";
 export default {
   name: "Header",
   data() {
     return {
       showLogin: false,
       showSignup: false
-    }
+    };
   },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'username'])
+  },
+
   components: {
     Login,
-    Signup
-  }
+    Signup,
+  },
+  methods: {
+    handleSuccess() {
+      console.log("login success");
+    //   this.$store.dispatch("setIsAuthenticated", true);
+    },
+    handleLogout() {
+        this.$store.dispatch("setIsAuthenticated", false);
+        localStorage.removeItem("token");
+    }
+  },
 };
 </script>
 
@@ -154,21 +175,24 @@ export default {
   font-weight: 400;
 }
 
-.user-cart, .user-noti {
+.user-cart,
+.user-noti {
   margin-right: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: white
+  color: white;
 }
 
-.user-cart i, .user-noti i {
+.user-cart i,
+.user-noti i {
   position: relative;
   margin-right: 15px;
 }
 
-.user-cart i .cart-quantity, .user-noti i .noti-quantity {
+.user-cart i .cart-quantity,
+.user-noti i .noti-quantity {
   position: absolute;
   bottom: 50%;
   right: -40%;
@@ -226,7 +250,8 @@ export default {
   color: white;
 }
 
-.login, .logout {
+.login,
+.logout {
   padding: 6px 16px;
   border: 1px solid white;
   border-radius: 3px;
@@ -244,13 +269,11 @@ export default {
   background-color: red;
 }
 
-.logout:hover, .login:hover {
+.logout:hover,
+.login:hover {
   background-color: #fff;
   color: red;
   cursor: pointer;
   opacity: 0.9;
 }
-
-
-
 </style>

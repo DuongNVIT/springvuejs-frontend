@@ -1,23 +1,24 @@
 <template>
   <div class="login-wrapper" @click.self="hideLogin">
     <div class="login-inner">
-      <div class="heading">Sign in</div>
+      <div class="heading">Đăng nhập</div>
       <div class="content">
         <input
           type="text"
           class="form-input"
-          placeholder="Username"
+          placeholder="Tên đăng nhập"
           v-model="user.username"
         />
         <input
           type="password"
           class="form-input"
-          placeholder="Password"
+          placeholder="Mật khẩu"
           v-model="user.password"
         />
+        <p v-if="loginFalse" class="login-message">{{message}}</p>
         <div class="submit">
-          <div class="btn-forget">Forget password</div>
-          <button @click="handleLogin" class="btn-login">Sign in</button>
+          <div class="btn-forget">Quên mật khẩu</div>
+          <button @click="handleLogin" class="btn-login">Đăng nhập</button>
         </div>
       </div>
     </div>
@@ -25,6 +26,7 @@
 </template>
 
 <script>
+import Vuex from 'vuex'
 import authService from "../service/authService";
 export default {
   name: "Login",
@@ -34,18 +36,30 @@ export default {
         username: "",
         password: "",
       },
+      loginFalse: false,
+      message: ""
     };
   },
   methods: {
     async handleLogin() {
-      const response = await authService.login(this.$data.user);
-      if(response)
-      this.hideLogin();
+      try {
+        const response = await authService.login(this.$data.user);
+        console.log(response)
+        this.$emit("loginSuccess");
+        if(response) this.hideLogin();
+        this.$store.dispatch("setIsAuthenticated", true);
+        this.$store.dispatch("setUsername", this.$data.user.username);
+      } catch(e) {
+        console.log(e.message)
+        this.$data.loginFalse = true;
+        console.log("error login")
+        alert(e.message)
+        this.$data.message = e.response.data.message ? e.response.data.message : e.message;
+      }
     },
     
     hideLogin() {
       this.$emit("hideLogin");
-      Object.defineProperties
     }
   },
 };
@@ -66,7 +80,7 @@ export default {
   position: absolute;
   background-color: #fff;
   width: 350px;
-  height: 300px;
+  /* height: 300px; */
   padding: 15px 20px;
   border-radius: 3px;
   top: 50%;
@@ -80,7 +94,8 @@ export default {
   from {
     opacity: 0;
     top: -350px;
-  } to {
+  }
+  to {
     opacity: 1;
     top: 50%;
   }
@@ -89,7 +104,8 @@ export default {
 @keyframes loginWrapper {
   from {
     opacity: 0;
-  } to {
+  }
+  to {
     opacity: 1;
   }
 }
@@ -122,6 +138,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.login-message {
+  color: red;
+  margin: 0;
+  text-align: left;
+  margin-top: -20px;
+  margin-bottom: 15px;
 }
 
 .btn-forget {

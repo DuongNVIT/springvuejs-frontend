@@ -1,7 +1,7 @@
 <template>
   <h1 class="product-heading">Danh sách sản phẩm</h1>
   <div class="row">
-    <ProductItem v-for="(product, index) in products" :key="index" />
+    <ProductItem v-for="(product, index) in productss" :key="index" :product="product"/>
     <!-- <pagination v-model="page" :records="500" @paginate="myCallback" /> -->
     
   </div>
@@ -19,6 +19,7 @@ import ProductItem from "./ProductItem.vue";
 import productService from "../service/productService.js";
 export default {
   name: "ProductList",
+  props: ['productss'],
   data() {
     return {
       page: 0,
@@ -40,7 +41,6 @@ export default {
     };
   },
   methods: {
-    myCallback() {},
     async getUsers() {
       const response = await productService.getAll(
         this.$data.page,
@@ -53,7 +53,7 @@ export default {
   },
 
   mounted() {
-    this.getUsers();
+    // this.getUsers();
   },
   components: {
     ProductItem,

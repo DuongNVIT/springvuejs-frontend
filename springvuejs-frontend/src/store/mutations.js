@@ -1,5 +1,6 @@
 export default {
     setIsAuthenticated(state, isAuthenticated) {
+        console.log("setIsAuthenticated to: " + isAuthenticated)
         state.isAuthenticated = isAuthenticated;
     },
     setUsername(state, username) {
@@ -7,5 +8,8 @@ export default {
     },
     setUserid(state, userid) {
         state.userid = userid;
+    },
+    setRole(state, role) {
+        state.role = role;
     }
 }

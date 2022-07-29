@@ -9,9 +9,9 @@
           <ul class="manage-list">
             <router-link to="/admin" class="manage-item"><i class="fa-solid fa-house"></i>Trang chủ</router-link>
             <router-link to="/admin/products" class="manage-item"><i class="fa-brands fa-product-hunt"></i>Sản phẩm</router-link>
-            <router-link to="/admin/bills" class="manage-item"><i class="fa-solid fa-money-bill-1-wave"></i>Đơn hàng</router-link>
-            <router-link to="/admin/users" class="manage-item"><i class="fa-solid fa-user"></i>Người dùng</router-link>
-            <li class="manage-item"><i class="fa-solid fa-arrow-right-from-bracket"></i>Đăng xuất</li>
+            <!-- <router-link to="/admin/bills" class="manage-item"><i class="fa-solid fa-money-bill-1-wave"></i>Đơn hàng</router-link> -->
+            <!-- <router-link to="/admin/users" class="manage-item"><i class="fa-solid fa-user"></i>Người dùng</router-link> -->
+            <li class="manage-item" @click="handleLogout"><i class="fa-solid fa-arrow-right-from-bracket" ></i>Đăng xuất</li>
           </ul>
         </div>
     </div>
@@ -19,8 +19,18 @@
 </template>
 
 <script>
+import router from '../router'
 export default {
-  name: 'AdminSidebar'
+  name: 'AdminSidebar',
+  methods: {
+    handleLogout() {
+      console.log('logout');
+      this.$store.dispatch("setIsAuthenticated", false);
+      this.$store.dispatch("setRole", "");
+      router.push("/");
+      localStorage.removeItem("token");
+    },
+  }
 }
 </script>
 

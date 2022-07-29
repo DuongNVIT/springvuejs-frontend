@@ -2,7 +2,13 @@
   <div class="cate-wrapper">
     <h1 class="heading"><i class="fa-solid fa-bars"></i>Danh mục</h1>
     <ul class="list">
-      <li class="item" v-for="(category, index) in categories" :key="index">
+      <li
+        class="item"
+        :class="{active: isActive[index]}"
+        v-for="(category, index) in categories"
+        :key="index"
+        @click="() => handleGetProductList(category.code, index)"
+      >
         {{ category.name }}
       </li>
     </ul>
@@ -12,27 +18,36 @@
 <script>
 import categoryService from "../service/categoryService.js";
 export default {
-    name: "Category",
-    data() {
-        return {
-            categories: []
-        }
+  name: "Category",
+  data() {
+    return {
+      categories: [],
+      isActive: []
+    };
+  },
+  mounted() {
+    this.getCategories();
+  },
+  methods: {
+    handleGetProductList(code, index) {
+      for(var i = 0; i<this.$data.categories.length; ++i) {
+        this.isActive[i] = false;
+      }
+      this.isActive[index] = true;
+      console.log(code);
+      this.$emit("getProductList", code);
     },
-    mounted() {
-        this.getCategories();
+    async getCategories() {
+      try {
+        const response = await categoryService.getAll();
+        console.response;
+        this.$data.categories = [...response];
+      } catch (error) {
+
+      }
     },
-    methods: {
-        async getCategories() {
-            try {
-                const response = await categoryService.getAll();
-                console.response;
-                this.$data.categories = [...response];
-            } catch (error) {
-                
-            }
-        }
-    }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -76,7 +91,7 @@ export default {
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.item:hover {
+.item:hover, .active {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.05);
 }

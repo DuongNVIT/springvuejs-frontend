@@ -18,6 +18,10 @@ export default {
 .footer-wrapper {
     height: 60px;
     background-color: red;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .footer-inner {

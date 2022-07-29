@@ -13,30 +13,31 @@
             type="text"
             class="form-search"
             placeholder="Nhập tên sản phẩm cần tìm kiếm"
+            v-model="name"
           />
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <i class="fa-solid fa-magnifying-glass" @click="handleSearch"></i>
         </div>
         <div class="user" v-if="isAuthenticated">
-          <div class="user-noti">
+          <!-- <div class="user-noti">
             <i class="fa-solid fa-bell">
               <div class="noti-quantity">0</div>
             </i>
             Notification
-          </div>
-          <router-link to="/customer/cart" class="user-cart">
+          </div> -->
+          <router-link to="/user/cart" class="user-cart">
             <i class="fa-solid fa-cart-shopping">
               <div class="cart-quantity">0</div>
             </i>
-            My cart
+            Cart
           </router-link>
           <div class="user-name">
             <i class="fa-solid fa-circle-user"></i>
-            {{username}}
+            {{ username }}
             <ul class="user-infor-list">
-              <router-link to="/customer/information" class="user-infor-item"
+              <router-link to="/user/information" class="user-infor-item"
                 >Thông tin cá nhân</router-link
               >
-              <router-link to="/customer/bill" class="user-infor-item"
+              <router-link to="/user/bill" class="user-infor-item"
                 >Đơn mua</router-link
               >
               <li class="user-infor-item" @click="handleLogout">Đăng xuất</li>
@@ -62,16 +63,20 @@
 import { mapGetters } from "vuex";
 import Login from "./Login.vue";
 import Signup from "./Signup.vue";
+import router from "../router/index.js";
+import productService from "../service/productService";
+
 export default {
   name: "Header",
   data() {
     return {
       showLogin: false,
-      showSignup: false
+      showSignup: false,
+      name: "",
     };
   },
   computed: {
-    ...mapGetters(['isAuthenticated', 'username'])
+    ...mapGetters(["isAuthenticated", "username"]),
   },
 
   components: {
@@ -81,12 +86,24 @@ export default {
   methods: {
     handleSuccess() {
       console.log("login success");
-    //   this.$store.dispatch("setIsAuthenticated", true);
+      //   this.$store.dispatch("setIsAuthenticated", true);
     },
     handleLogout() {
-        this.$store.dispatch("setIsAuthenticated", false);
-        localStorage.removeItem("token");
-    }
+      this.$store.dispatch("setIsAuthenticated", false);
+      this.$store.dispatch("setRole", "");
+      router.push("/");
+      localStorage.removeItem("token");
+    },
+    async handleSearch() {
+      try {
+        console.log(this.$data.name);
+        const response = await productService.getByName(this.$data.name);
+        console.log(response);
+        this.$emit("search", response);
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
   },
 };
 </script>

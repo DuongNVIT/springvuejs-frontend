@@ -1,7 +1,7 @@
 <template>
   <div class="signup-wrapper" @click.self="hideSignup">
-    <div class="signup-inner">
-      <div class="signup-heading">Sign up</div>
+    <div class="signup-inner" v-if="!loading && !signupSuccess">
+      <div class="signup-heading">Đăng ký</div>
       <div class="signup-content">
         <input
           type="text"
@@ -23,9 +23,14 @@
         />
         <p v-if="message" class="signup-message">{{ message }}</p>
         <div class="submit">
-          <button class="btn-signup" @click="handleSignup">Sign up</button>
+          <button class="btn-signup" @click="handleSignup">Đăng ký</button>
         </div>
       </div>
+    </div>
+    <img v-if="loading" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="" class="loading signup-inner">
+    <div class="signup-inner" style="min-width: 600px" v-if="signupSuccess">
+      <h1 class="success">Đăng ký thành công</h1>
+      <div class="email-pass">Kiểm tra email <span>{{user.email}}</span> để lấy mật khẩu</div>
     </div>
   </div>
 </template>
@@ -42,7 +47,8 @@ export default {
         username: ""
       },
       message: "",
-
+      loading: false,
+      signupSuccess: false
     }
   },
   methods: {
@@ -51,11 +57,14 @@ export default {
     },
     async handleSignup() {
       try {
+        this.$data.loading = true;
         const res = await authService.signup(this.$data.user);
-
+        this.$data.loading = false;
+        this.$data.signupSuccess = true;
         console.log(res);
-        this.hideSignup();
+        // this.hideSignup();
       } catch (e) {
+        this.$data.loading = false;
         console.log(e.message)
         console.log(e.response.data)
         this.$data.message = e.response.data.message;
@@ -86,6 +95,20 @@ export default {
   transform: translate(-50%, -50%);
   animation: signup 0.4s ease-in-out;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+
+.signup-inner .success {
+  font-size: 30px;
+  color: green
+}
+
+.signup-inner .email-pass {
+  font-size: 20px;
+}
+
+.signup-inner .email-pass span {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 @keyframes signup {

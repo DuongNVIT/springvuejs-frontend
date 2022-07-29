@@ -16,11 +16,12 @@ create table role(
 drop table if exists user;
 create table user (
 	id bigint not null primary key auto_increment,
-    username varchar(255) not null,
+    username varchar(255) not null unique,
     password varchar(255) not null,
     fullname varchar(255) not null,
-    status int not null,
-    roleid bigint not null,
+    email varchar(255) not null unique,
+    status int null,
+    roleid bigint null,
     address varchar(255) null,
     phone varchar(255) null,
     createddate timestamp null,

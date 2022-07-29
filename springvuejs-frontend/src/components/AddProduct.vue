@@ -1,7 +1,6 @@
 <template>
   <!-- <div class="wrapper" @click="closeAddProduct(false)"> -->
   <div class="wrapper" @click.self="closeAddProduct(false)">
-    {{close}}
     <!-- <div class="inner" @click.stop> -->
     <div class="inner">
       <h1 class="heading">Thêm mới sản phẩm</h1>
@@ -27,11 +26,17 @@
                 type="text"
                 class="form-input"
                 placeholder="Nhập tên sản phẩm"
+                v-model="product.name"
               />
             </div>
             <div class="form-group">
               <label for="" class="form-label">Giá cũ</label>
-              <input type="text" class="form-input" placeholder="Nhập giá cũ" />
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Nhập giá cũ"
+                v-model="product.oldprice"
+              />
             </div>
             <div class="form-group">
               <label for="" class="form-label">Giá mới</label>
@@ -39,19 +44,26 @@
                 type="text"
                 class="form-input"
                 placeholder="Nhập giá mới"
+                v-model="product.newprice"
               />
             </div>
             <div class="form-group">
               <label for="" class="form-label">Danh mục sản phẩm</label>
-              <select name="" id="" class="form-select">
-                <option value="tivi">Ti vi</option>
-                <option value="tulanh">Tủ lạnh</option>
-                <option value="giaydep">Giày dép</option>
-                <option value="quanao">Quần áo</option>
+              <select id="" class="form-select" v-model="product.categorycode">
+                <option disable value="">Chọn danh mục</option>
+                <option
+                  v-for="(category, index) in categories"
+                  :key="index"
+                  :value="category.code"
+                >
+                  {{ category.name }}
+                </option>
               </select>
             </div>
             <div class="btn-wrapper">
-                <button class="btn-add">Thêm sản phẩm</button>
+              <button class="btn-add" @click="handleAddProduct">
+                Thêm sản phẩm
+              </button>
             </div>
           </div>
         </div>
@@ -61,13 +73,49 @@
 </template>
 
 <script>
+import categoryService from "../service/categoryService";
+import productService from "../service/productService";
 export default {
   name: "AddProduct",
+  data() {
+    return {
+      categories: [],
+      product: {
+        thumbnail: "Avatar add",
+        name: "",
+        oldprice: "",
+        newprice: "",
+        categorycode: "",
+      },
+    };
+  },
+  mounted() {
+    this.getCategories();
+    console.log("vào mounted");
+  },
   methods: {
+    async getCategories() {
+      try {
+        const response = await categoryService.getAll();
+        console.response;
+        this.$data.categories = [...response];
+      } catch (error) {}
+    },
+
     closeAddProduct(close) {
-        this.$emit('closePopup', close);
-    }
-  }
+      this.$emit("closePopup", close);
+    },
+
+    async handleAddProduct() {
+      try {
+        console.log(this.$data.product);
+        const response = await productService.create(this.$data.product);
+        console.log(response);
+      } catch (error) {
+        alert(error.message);
+      }
+    },
+  },
 };
 </script>
 
@@ -86,11 +134,12 @@ export default {
 }
 
 @keyframes appear {
-    from {
-        opacity: 0;
-    } to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .inner {
@@ -101,77 +150,76 @@ export default {
 }
 
 .heading {
-    font-size: 20px;
-    text-align: left;
-    font-weight: 600;
-    margin: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 0 0 8px;
-    margin-bottom: 20px;
+  font-size: 20px;
+  text-align: left;
+  font-weight: 600;
+  margin: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0 0 8px;
+  margin-bottom: 20px;
 }
 
 .avatar {
-    position: relative;
-    height: 100%;
+  position: relative;
+  height: 100%;
 }
 
 .avatar img {
-    width: 100%;
+  width: 100%;
 }
 
 .avatar i {
-    position: absolute;
-    bottom: 10px;
-    font-size: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
+  position: absolute;
+  bottom: 10px;
+  font-size: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
 .avatar i:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 16px;
 }
 
 .form-label {
-    margin-bottom: 4px;
-    font-size: 15px;
+  margin-bottom: 4px;
+  font-size: 15px;
 }
 
 .form-input,
 .form-select {
-    padding: 4px 8px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
+  padding: 4px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
 }
 
 .form-input:focus,
 .form-select {
-    outline: 1px solid rgba(0, 0, 0, 0.7);
+  outline: 1px solid rgba(0, 0, 0, 0.7);
 }
 
 .btn-wrapper {
-    display: flex;
-    justify-content: end;
+  display: flex;
+  justify-content: end;
 }
 
 .btn-add {
-    border: none;
-    padding: 6px 8px;
-    background-color: red;
-    color: white;
-    border-radius: 3px;
+  border: none;
+  padding: 6px 8px;
+  background-color: red;
+  color: white;
+  border-radius: 3px;
 }
 
 .btn-add:hover {
-    opacity: 0.7;
-    cursor: pointer;
+  opacity: 0.7;
+  cursor: pointer;
 }
-
 </style>

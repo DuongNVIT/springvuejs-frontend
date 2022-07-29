@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import store from "../store"
 
 import HomePage from '../pages/HomePage.vue';
 import LoginPage from '../pages/LoginPage.vue';
@@ -12,8 +13,14 @@ import CustomerInfor from '../components/CustomerInfor.vue';
 import CustomerBill from '../components/CustomerBill.vue';
 import CustomerCart from '../components/CustomerCart.vue';
 import CustomerPage from '../pages/CustomerPage.vue';
+import AccessDeniedPage from '../pages/AccessDeniedPage.vue';
+import NotFoundPage from '../pages/NotFoundPage.vue';
 
 const routes = [
+    { 
+        path: '/accessdenied', 
+        component: AccessDeniedPage 
+    },
     {
         path: "/",
         component: HomePage
@@ -46,10 +53,14 @@ const routes = [
                 path: 'bills',
                 component: AdminBill
             }
-        ]
+        ],
+        meta: {
+            requireAuth: true,
+            role: 'admin'
+        }
     },
     {
-        path: "/customer",
+        path: "/user",
         component: CustomerPage,
         children: [
             {
@@ -64,8 +75,16 @@ const routes = [
                 path: 'bill',
                 component: CustomerBill
             }
-        ]
+        ],
+        meta: {
+            requireAuth: true,
+            role: 'user'
+        }
     },
+    {
+        path: "/:catchAll(.*)", 
+        component: NotFoundPage
+    }
 ]
 
 const router = createRouter({

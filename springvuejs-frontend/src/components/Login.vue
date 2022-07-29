@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import Vuex from 'vuex'
 import authService from "../service/authService";
+import router from "../router/index.js"
 export default {
   name: "Login",
   data() {
@@ -46,9 +46,19 @@ export default {
         const response = await authService.login(this.$data.user);
         console.log(response)
         this.$emit("loginSuccess");
-        if(response) this.hideLogin();
+        console.log(this.$store.state.isAuthenticated);
         this.$store.dispatch("setIsAuthenticated", true);
+        console.log(this.$store.state.isAuthenticated);
+        console.log(this.$store.getters.isAuthenticated)
         this.$store.dispatch("setUsername", this.$data.user.username);
+        this.$store.dispatch("setRole", response.role);
+        this.$store.dispatch("setUserid", response.userid);
+        localStorage.setItem("token", response.jwtToken);
+        if(this.$store.state.role == "admin") {
+          router.push("/admin")
+        }
+        if(response) this.hideLogin();
+        
       } catch(e) {
         console.log(e.message)
         this.$data.loginFalse = true;

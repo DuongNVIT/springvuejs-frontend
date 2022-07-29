@@ -1,52 +1,52 @@
 <template>
   <div class="wrapper">
-    <div class="grid wide">
-      <div class="inner">
-        <div class="heading">Customer information</div>
-        <div class="row">
-          <div class="col l-4">
-            <div class="user-avatar">
-              <img
-                src="https://st.quantrimang.com/photos/image/072015/22/avatar.jpg"
-                alt=""
-                class="avatar"
-              />
-              <label for="upload-avatar" class="up-avatar"><i class="fa-solid fa-camera"></i></label>
-              <input type="file" id="upload-avatar" style="display: none;"/>
-            </div>
+    <div class="inner">
+      <div class="heading">Customer information</div>
+      <div class="row">
+        <div class="col l-4">
+          <div class="user-avatar">
+            <img
+              src="https://st.quantrimang.com/photos/image/072015/22/avatar.jpg"
+              alt=""
+              class="avatar"
+            />
+            <label for="upload-avatar" class="up-avatar"
+              ><i class="fa-solid fa-camera"></i
+            ></label>
+            <input type="file" id="upload-avatar" style="display: none" />
           </div>
-          <div class="col l-8">
-            <div class="content">
-              <div class="form-group">
-                <label for="fullname" class="input-label">Full name</label>
-                <input
-                  id="fullname"
-                  type="text"
-                  class="form-input"
-                  placeholder="Full name"
-                />
-              </div>
-              <div class="form-group">
-                <label for="phone" class="input-label">Phone number</label>
-                <input
-                  id="phone"
-                  type="text"
-                  class="form-input"
-                  placeholder="Phone number"
-                />
-              </div>
-              <div class="form-group">
-                <label for="address" class="input-label">Address</label>
-                <input
-                  id="address"
-                  type="text"
-                  class="form-input"
-                  placeholder="Address"
-                />
-              </div>
-              <div class="btn-wrapper">
-                <button class="btn-buy">Buy</button>
-              </div>
+        </div>
+        <div class="col l-8">
+          <div class="content">
+            <div class="form-group">
+              <label for="fullname" class="input-label">Full name</label>
+              <input
+                id="fullname"
+                type="text"
+                class="form-input"
+                placeholder="Full name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone" class="input-label">Phone number</label>
+              <input
+                id="phone"
+                type="text"
+                class="form-input"
+                placeholder="Phone number"
+              />
+            </div>
+            <div class="form-group">
+              <label for="address" class="input-label">Address</label>
+              <input
+                id="address"
+                type="text"
+                class="form-input"
+                placeholder="Address"
+              />
+            </div>
+            <div class="btn-wrapper">
+              <button class="btn-buy">Buy</button>
             </div>
           </div>
         </div>
@@ -80,26 +80,26 @@ export default {
 }
 
 .user-avatar {
-    position: relative;
+  position: relative;
 }
 
 .user-avatar img {
-    width: 100%;
-    border-radius: 3px;
+  width: 100%;
+  border-radius: 3px;
 }
 
 .up-avatar {
 }
 
 .up-avatar i {
-    font-size: 25px;
-    position: absolute;
-    bottom: 20px;
-    left: calc(50% - 10px);
+  font-size: 25px;
+  position: absolute;
+  bottom: 20px;
+  left: calc(50% - 10px);
 }
 
 .up-avatar i:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .content {

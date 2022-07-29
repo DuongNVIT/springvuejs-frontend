@@ -8,18 +8,18 @@
         />
       </div>
       <div class="item-infor">
-        <div class="item-name">Áo thun tay lỡ sweeter basic</div>
+        <div class="item-name">{{product.name}}</div>
         <div class="item-price">
-          <div class="old-price">1.500.000đ</div>
-          <div class="new-price">989.000đ</div>
+          <div class="old-price">{{product.oldprice}}đ</div>
+          <div class="new-price">{{product.newprice}}đ</div>
         </div>
         <div class="rate-add">
           <div class="rate">
+            <!-- <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i> -->
           </div>
           <div class="add">Add to cart</div>
         </div>
@@ -29,7 +29,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "ProductItem",
+  props: ['product']
+
+};
 </script>
 
 <style scoped>

@@ -59,6 +59,7 @@ export default {
         }
         if(response) this.hideLogin();
         
+        
       } catch(e) {
         console.log(e.message)
         this.$data.loginFalse = true;

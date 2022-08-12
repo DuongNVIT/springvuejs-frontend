@@ -46,7 +46,7 @@ create table category (
 drop table if exists product;
 create table product (
 	id bigint not null primary key auto_increment,
-    thumbnail varchar(500) not null,
+    thumbnail varchar(5000) not null,
     name varchar(255) not null,
     oldprice int not null,
     newprice int not null,
@@ -65,13 +65,21 @@ create table user_product (
 	id bigint not null primary key auto_increment,
     productid bigint not null,
     userid bigint not null,
-    statusid bigint not null
+    statusid bigint not null,
+    createddate timestamp null,
+    createdby varchar(255) null,
+    modifieddate timestamp null,
+    modifiedby varchar(255)
 );
 
 drop table if exists product_status;
 create table product_status (
-	id bigint not null primary key auto_increment,
-    name varchar(255) not null
+ 	id bigint not null primary key auto_increment,
+	name varchar(255) not null,
+    createddate timestamp null,
+    createdby varchar(255) null,
+    modifieddate timestamp null,
+    modifiedby varchar(255)
 );
 
 alter table user_product add constraint fk_user_product_status foreign key(statusid) references product_status(id);

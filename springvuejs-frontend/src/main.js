@@ -22,20 +22,29 @@ router.beforeEach((to, from, next) => {
     console.log(role);
     console.log(to);
     console.log(from);
-    const path = to.fullPath;
-    console.log(path);
-    if(!to.meta.requireAuth) {
-        next();
-        console.log("Không cần authen")
-    } else if(isAuthenticated == false) {
-        console.log("Cần authen nhưng chưa authen")
-        next({path: "/accessdenied"});
-    } else if(path.startsWith(`/${role}`)) {
-        console.log("Đã authen và đúng role");
-        next();
+    // const path = to.fullPath;
+    // console.log(path);
+    // if(!to.meta.requireAuth) {
+    //     next();
+    //     console.log("Không cần authen")
+    // } else if(isAuthenticated == false) {
+    //     console.log("Cần authen nhưng chưa authen")
+    //     next({path: "/accessdenied"});
+    // } else if(path.startsWith(`/${role}`)) {
+    //     console.log("Đã authen và đúng role");
+    //     next();
+    // } else {
+    //     console.log("Đã authen nhưng chưa đúng role");
+    //     next({path: "/accessdenied"});
+    // }
+    if(to.meta.requireAuth) {
+        if(to.meta.role == role) {
+            next();
+        } else {
+            next({path: "/accessdenied"});
+        }
     } else {
-        console.log("Đã authen nhưng chưa đúng role");
-        next({path: "/accessdenied"});
+        next();
     }
 })
 

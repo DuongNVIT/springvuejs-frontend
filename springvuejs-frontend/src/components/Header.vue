@@ -91,6 +91,8 @@ export default {
     handleLogout() {
       this.$store.dispatch("setIsAuthenticated", false);
       this.$store.dispatch("setRole", "");
+      this.$store.dispatch("setUsername", "");
+      this.$store.dispatch("setUserid", "");
       router.push("/");
       localStorage.removeItem("token");
     },

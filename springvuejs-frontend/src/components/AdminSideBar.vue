@@ -2,7 +2,7 @@
   <div class="sidebar-wrapper">
     <div class="sidebar-inner">
         <div class="sidebar-heading">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU" alt="" class="admin-avatar">
+            <img src="https://s3.ap-southeast-1.amazonaws.com/duongnv/1659768991626-IMG_0473.JPG" alt="" class="admin-avatar">
             <div class="sidebar-name">Admin</div>
         </div>
         <div class="sidebar-content">

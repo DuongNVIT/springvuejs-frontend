@@ -46,6 +46,7 @@ export default {
         async handleLogin() {
             try {
                 const response = await authService.login(this.$data.user);
+                console.log(response)
                 this.$emit("loginSuccess");
                 this.$store.dispatch("setIsAuthenticated", true);
                 this.$store.dispatch("setUsername", this.$data.user.username);

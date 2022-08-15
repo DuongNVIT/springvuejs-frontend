@@ -1,6 +1,6 @@
 <template>
   <router-view></router-view>
-  <Popup/>
+  <!-- <Popup/> -->
 </template>
 
 <script>

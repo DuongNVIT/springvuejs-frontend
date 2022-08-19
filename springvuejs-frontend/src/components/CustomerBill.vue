@@ -52,6 +52,7 @@
 
 <script>
 import Cart from "./Cart.vue";
+
 export default {
     name: "CustomerBill",
     data() {
@@ -63,7 +64,13 @@ export default {
 
     },
     methods: {
-        
+        async getBill() {
+            try {
+
+            } catch(error) {
+
+            }
+        }
     }
 };
 </script>

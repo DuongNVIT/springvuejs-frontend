@@ -26,6 +26,14 @@ const routes = [
         component: HomePage
     },
     {
+        path: "/products",
+        component: HomePage
+    },
+    {
+        path: "/products/:category",
+        component: HomePage
+    },
+    {
         path: "/login",
         component: LoginPage
     },

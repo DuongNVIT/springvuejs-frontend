@@ -11,8 +11,8 @@ const productService = {
         }
     },
     
-    async getProductsByCategory(categoryCode) {
-        const url = `/products/${categoryCode}`;
+    async getProductsByCategory(categoryCode, page, size) {
+        const url = `/products/${categoryCode}?page=${page}&size=${size}`;
         const response = await axiosClient.get(url);
         console.log(response);
         return response;

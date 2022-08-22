@@ -9,7 +9,7 @@
           <ul class="manage-list">
             <router-link to="/admin" class="manage-item"><i class="fa-solid fa-house"></i>Trang chủ</router-link>
             <router-link to="/admin/products" class="manage-item"><i class="fa-brands fa-product-hunt"></i>Sản phẩm</router-link>
-            <!-- <router-link to="/admin/bills" class="manage-item"><i class="fa-solid fa-money-bill-1-wave"></i>Đơn hàng</router-link> -->
+            <router-link to="/admin/bills" class="manage-item"><i class="fa-solid fa-money-bill-1-wave"></i>Đơn hàng</router-link>
             <!-- <router-link to="/admin/users" class="manage-item"><i class="fa-solid fa-user"></i>Người dùng</router-link> -->
             <li class="manage-item" @click="handleLogout"><i class="fa-solid fa-arrow-right-from-bracket" ></i>Đăng xuất</li>
           </ul>

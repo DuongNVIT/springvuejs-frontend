@@ -9,7 +9,7 @@
               <Category @getProductList="getProductByCategory" />
             </div>
             <div class="col l-10">
-              <ProductList :productss="products"/>
+              <ProductList :productss="products" @getNewPage="handleGetNewPage"/>
             </div>
           </div>
         </div>
@@ -29,7 +29,8 @@ export default {
   name: "HomePage",
   data() {
     return {
-      products: []
+      products: [],
+      categoryCode: "all"
     }
   },
   components: {
@@ -39,26 +40,35 @@ export default {
     ProductList,
   },
   mounted() {
-    this.getAllProducts();
+    console.log(this.$route.query)
+    console.log(this.$route)
+    this.getAllProducts(0);
   },
   methods: {
     handleSearch(response) {
       this.$data.products = [...response];
     },
 
-    async getAllProducts() {
+    handleGetNewPage(newPage) {
+      this.$data.categoryCode == "all" ? this.getAllProducts(newPage) : this.getProductByCategory(categoryCode, newPage)
+    },
+
+    async getAllProducts(newPage) {
       try {
-        const response = await productService.getAll(0, 10);
+        console.log("Get all products")
+        console.log(newPage)
+        const response = await productService.getAll(newPage, 10);
         console.log(response);
         this.$data.products = [...response];
       } catch (e) {
         alert(e.message);
       }
     },
-    async getProductByCategory(categoryCode) {
+    async getProductByCategory(categoryCode, newPage = 0) {
       try {
+        this.$data.categoryCode = categoryCode;
         console.log("Vào getbycode")
-        const response = await productService.getProductsByCategory(categoryCode);
+        const response = await productService.getProductsByCategory(categoryCode, newPage, 10);
         this.$data.products = [...response];
         console.log(response);
       } catch(error) {

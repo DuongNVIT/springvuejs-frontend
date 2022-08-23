@@ -11,5 +11,8 @@ export default {
     },
     setRole(state, role) {
         state.role = role;
+    },
+    setGlobalEvent(state, globalEvent) {
+        state.globalEvent = globalEvent;
     }
 }

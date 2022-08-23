@@ -19,7 +19,13 @@ const cartService = {
         const url = `/cart?userProductId=${userProductId}`;
         const response = await axiosClient.delete(url);
         return response;
-    }
+    },
+
+    order: async (ids) => {
+        const url = `/cart`;
+        const response = await axiosClient.put(url, ids);
+        return response;
+    } 
 }
 
 export default cartService;

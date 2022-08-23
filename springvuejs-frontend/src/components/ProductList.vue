@@ -35,7 +35,7 @@ export default {
     data() {
         return {
             currentPage: 1,
-            itemPerPage: 10
+            itemPerPage: 3
         };
     },
     watch: {

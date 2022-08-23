@@ -33,10 +33,8 @@ export default {
     methods: {
         async handleAddToCart() {
             try {
-                console.log(this.$props.product.id);
                 const response = await cartService.add(this.$props.product.id);
-                console.log(response);
-                alert("Thêm thành công")
+                this.$store.dispatch("setGlobalEvent", {status: true, message: "Thêm thành công sản phẩm"})
             } catch (error) {
                 alert(error.message);
             }

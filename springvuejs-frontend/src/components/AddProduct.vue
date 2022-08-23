@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper" @click.self="closeAddProduct(false)">
-        <div class="inner">
+        <div v-if="isAdding" class="inner">
             <h1 class="heading">Thêm mới sản phẩm</h1>
             <div class="grid">
                 <div class="row">
@@ -80,6 +80,86 @@
                 </div>
             </div>
         </div>
+        <div v-else class="inner">
+            <h1 class="heading">Cập nhật sản phẩm</h1>
+            <div class="grid">
+                <div class="row">
+                    <div class="col l-4">
+                        <div class="avatar">
+                            <label for="upload" class="upload-avatar"
+                                ><i class="fa-solid fa-camera"></i
+                            ></label>
+                            <input
+                                type="file"
+                                id="upload"
+                                style="display: none"
+                                @change="handleUploadImage"
+                            />
+                            <img
+                                :src="isUpdatingProduct.thumbnail"
+                                alt=""
+                                class="avatar"
+                            />
+                        </div>
+                    </div>
+                    <div class="col l-8">
+                        <div class="form-group">
+                            <label for="" class="form-label"
+                                >Tên sản phẩm</label
+                            >
+                            <input
+                                type="text"
+                                class="form-input"
+                                placeholder="Nhập tên sản phẩm"
+                                v-model="isUpdatingProduct.name"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Giá cũ</label>
+                            <input
+                                type="text"
+                                class="form-input"
+                                placeholder="Nhập giá cũ"
+                                v-model="isUpdatingProduct.oldPrice"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Giá mới</label>
+                            <input
+                                type="text"
+                                class="form-input"
+                                placeholder="Nhập giá mới"
+                                v-model="isUpdatingProduct.newPrice"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label"
+                                >Danh mục sản phẩm</label
+                            >
+                            <select
+                                id=""
+                                class="form-select"
+                                v-model="isUpdatingProduct.categoryCode"
+                            >
+                                <option disable value="">Chọn danh mục</option>
+                                <option
+                                    v-for="(category, index) in categories"
+                                    :key="index"
+                                    :value="category.code"
+                                >
+                                    {{ category.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="btn-wrapper">
+                            <button class="btn-add" @click="handleUpdateProduct">
+                                Cập nhật
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -99,19 +179,18 @@ export default {
                 oldPrice: "",
                 newPrice: "",
                 categoryCode: "",
-            },
+            }
         };
     },
-    mounted() {
+    props: ["isAdding", "updatedProduct", "isUpdatingProduct"],
+    created() {
         this.getCategories();
-        console.log("vào mounted");
     },
     methods: {
         async getCategories() {
             try {
                 const response = await categoryService.getAll();
-                console.response;
-                this.$data.categories = [...response];
+                this.$data.categories = response;
             } catch (error) {}
         },
 
@@ -121,11 +200,24 @@ export default {
 
         async handleAddProduct() {
             try {
-                console.log(this.$data.product);
-                const response = await productService.create( this.$data.product);
-                this.closeAddProduct();
-                alert("Thêm sản phẩn thành công")
-                console.log(response);
+                const response = await productService.createOrUpdate( this.$data.product);
+                this.$emit("closePopup", response);
+                this.$store.dispatch("setGlobalEvent", {status: true, message: "Thêm sản phẩm thành công"})
+            } catch (error) {
+                alert(error.message);
+            }
+        },
+
+        async handleUpdateProduct() {
+            try {
+                const response = await productService.createOrUpdate(this.isUpdatingProduct);
+                this.updatedProduct.thumbnail = this.isUpdatingProduct.thumbnail;
+                this.updatedProduct.name = this.isUpdatingProduct.name;
+                this.updatedProduct.olePrice = this.isUpdatingProduct.olePrice;
+                this.updatedProduct.newPrice = this.isUpdatingProduct.newPrice;
+                this.updatedProduct.categoryCode = this.isUpdatingProduct.categoryCode;
+                this.$emit("closePopup")
+                this.$store.dispatch("setGlobalEvent", {status: true, message: "Cập nhật sản phẩm thành công"})
             } catch (error) {
                 alert(error.message);
             }
@@ -140,6 +232,7 @@ export default {
                 console.log("bắt đầu upload");
                 const response = await imageService.upload(formData);
                 this.$data.product.thumbnail = response;
+                this.isUpdatingProduct.thumbnail = response;
                 console.log(response);
             } catch (error) {
                 console.log(error);
@@ -162,6 +255,7 @@ export default {
     align-items: center;
     justify-content: center;
     animation: appear 0.2s ease-in;
+    z-index: 2;
 }
 
 @keyframes appear {
@@ -179,6 +273,7 @@ export default {
     background-color: #fff;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
     border-radius: 3px;
+    z-index: 5
 }
 
 .heading {

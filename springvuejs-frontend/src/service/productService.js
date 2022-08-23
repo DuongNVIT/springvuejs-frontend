@@ -18,21 +18,26 @@ const productService = {
         return response;
     },
 
-    async create(param) {
+    async createOrUpdate(param) {
         const url = `/products`;
         const response = await axiosClient.post(url, param);
         console.log(response);
         return response;
     },
 
-    async getByName(name) {
-        console.log(name);
-        const url = `/products/search/${name}`;
+    async getByName(productName, newPage) {
+        console.log(productName);
+        const url = `/products/search?productName=${productName}&page=${newPage}&size=3`;
         console.log(url)
         const response = await axiosClient.get(url);
         return response;
-    }
+    },
 
+    async delete(productId) {
+        const url = `/products/${productId}`;
+        const response = await axiosClient.delete(url);
+        return response;
+    }
 
 }
 

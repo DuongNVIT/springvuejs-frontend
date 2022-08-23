@@ -3,4 +3,8 @@ export default {
     role: "",
     username: "",
     userid: "",
+    globalEvent: {
+        status: false,
+        message: ""
+    }
 }

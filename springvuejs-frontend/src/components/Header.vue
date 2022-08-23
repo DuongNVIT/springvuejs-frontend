@@ -13,9 +13,9 @@
             type="text"
             class="form-search"
             placeholder="Nhập tên sản phẩm cần tìm kiếm"
-            v-model="name"
+            v-model="productName"
           />
-          <i class="fa-solid fa-magnifying-glass" @click="handleSearch"></i>
+          <i class="fa-solid fa-magnifying-glass" @click="$emit('search', productName)"></i>
         </div>
         <div class="user" v-if="isAuthenticated">
           <!-- <div class="user-noti">
@@ -37,7 +37,7 @@
               <router-link to="/user/information" class="user-infor-item"
                 >Thông tin cá nhân</router-link
               >
-              <router-link to="/user/bill" class="user-infor-item"
+              <router-link to="/user/bills" class="user-infor-item"
                 >Đơn mua</router-link
               >
               <li class="user-infor-item" @click="handleLogout">Đăng xuất</li>
@@ -72,7 +72,7 @@ export default {
     return {
       showLogin: false,
       showSignup: false,
-      name: "",
+      productName: "",
     };
   },
   computed: {
@@ -84,28 +84,15 @@ export default {
     Signup,
   },
   methods: {
-    handleSuccess() {
-      console.log("login success");
-      //   this.$store.dispatch("setIsAuthenticated", true);
-    },
     handleLogout() {
       this.$store.dispatch("setIsAuthenticated", false);
       this.$store.dispatch("setRole", "");
       this.$store.dispatch("setUsername", "");
       this.$store.dispatch("setUserid", "");
+      this.$store.dispatch("setGlobalEvent", {status: false})
       router.push("/");
       localStorage.removeItem("token");
-    },
-    async handleSearch() {
-      try {
-        console.log(this.$data.name);
-        const response = await productService.getByName(this.$data.name);
-        console.log(response);
-        this.$emit("search", response);
-      } catch (e) {
-        console.log(e.message);
-      }
-    },
+    }
   },
 };
 </script>

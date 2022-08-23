@@ -7,9 +7,9 @@
         :class="{active: isActive[index]}"
         v-for="(category, index) in categories"
         :key="index"
-        @click="() => handleGetProductList(category.code, index)"
+        @click="() => handleGetProductList(index)"
       >
-        {{ category.name }}
+        <router-link :to="`/products/${category.code}`">{{ category.name }}</router-link>
       </li>
     </ul>
   </div>
@@ -29,21 +29,19 @@ export default {
     this.getCategories();
   },
   methods: {
-    handleGetProductList(code, index) {
+    handleGetProductList(index) {
       for(var i = 0; i<this.$data.categories.length; ++i) {
         this.isActive[i] = false;
       }
       this.isActive[index] = true;
-      console.log(code);
-      this.$emit("getProductList", code);
     },
     async getCategories() {
       try {
         const response = await categoryService.getAll();
         console.response;
-        this.$data.categories = [...response];
+        this.$data.categories = response;
       } catch (error) {
-
+        alert(error.message);
       }
     },
   },
@@ -89,6 +87,11 @@ export default {
   font-size: 15px;
   text-align: left;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+}
+
+.item a {
+  text-decoration: none;
 }
 
 .item:hover, .active {

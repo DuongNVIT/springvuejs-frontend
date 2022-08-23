@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h1 class="heading">{{heading}}</h1>
+    <h1 class="headingg">{{heading}}</h1>
   </div>
 </template>
 
@@ -24,9 +24,7 @@ export default {
     justify-content: center;
 }
 
-.heading {
-    height: 100%;
-    width: 100%;
+.headingg {
     font-size: 24px;
     display: flex;
     align-items: center;

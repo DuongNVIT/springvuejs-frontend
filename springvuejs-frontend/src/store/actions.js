@@ -11,5 +11,8 @@ export default {
     },
     setRole({commit}, role) {
         commit("setRole", role)
+    },
+    setGlobalEvent({commit}, globalEvent) {
+        commit("setGlobalEvent", globalEvent)
     }
 }

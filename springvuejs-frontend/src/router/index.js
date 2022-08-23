@@ -5,9 +5,9 @@ import HomePage from '../pages/HomePage.vue';
 import LoginPage from '../pages/LoginPage.vue';
 import SignupPage from '../pages/SignupPage.vue';
 import AdminPage from '../pages/AdminPage.vue';
-import AdminProduct from '../components/AdminProduct.vue';
+import AdminProduct from '../components/AdminBill.vue';
 import AdminUser from '../components/AdminUser.vue';
-import AdminBill from '../components/AdminBill.vue';
+import AdminBill from '../components/AdminProduct.vue';
 import AdminWelcome from '../components/AdminWelcome.vue';
 import CustomerInfor from '../components/CustomerInfor.vue';
 import CustomerBill from '../components/CustomerBill.vue';
@@ -80,7 +80,7 @@ const routes = [
                 component: CustomerInfor
             },
             {
-                path: 'bill',
+                path: 'bills',
                 component: CustomerBill
             }
         ],

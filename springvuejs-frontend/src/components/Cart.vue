@@ -8,6 +8,7 @@
                     style="width: 100%"
                     stripe
                     height="fit content"
+                    :default-sort="{ prop: 'status', order: 'descending' }"
                 >
                     <el-table-column
                         prop="thumbnail"
@@ -46,6 +47,9 @@
                         </template>
                     </el-table-column>
                 </el-table>
+                <div class="order-wrapper">
+                    <el-button type="danger" @click="handleOrder">Đặt hàng</el-button>
+                </div>
             </div>
         </div>
     </div>
@@ -53,6 +57,7 @@
 
 <script>
 import cartService from "@/service/cartService";
+import router from "../router/index.js";
 export default {
     name: "Cart",
     data() {
@@ -85,6 +90,18 @@ export default {
                 alert(error.message);
             }
         },
+
+        async handleOrder() {
+            try {
+                const ids = this.$data.cart.map(item => item.userProductId);
+                console.log(ids)
+                const response = cartService.order(ids);
+                this.$store.dispatch("setGlobalEvent", {status: true, message: "Đặt hàng thành công"})
+                router.push("/user/bills")
+            } catch(error) {
+                alert(error.message);
+            }
+        }
     },
 };
 </script>
@@ -144,5 +161,11 @@ export default {
 .product-thumbnail {
   height: 50px;
   width: 70px;
+}
+
+.order-wrapper {
+    width: 100%;
+    margin-top: 20px;
+    margin-right: 200px;
 }
 </style>

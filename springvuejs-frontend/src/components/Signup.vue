@@ -7,8 +7,8 @@
                     <input
                         type="text"
                         class="form-input"
-                        placeholder="Họ và tên"
-                        v-model="user.fullname"
+                        placeholder="Email"
+                        v-model="user.email"
                     />
                     <input
                         type="text"
@@ -19,9 +19,16 @@
                     <input
                         type="text"
                         class="form-input"
-                        placeholder="Email"
-                        v-model="user.email"
+                        placeholder="Họ và tên"
+                        v-model="user.fullname"
                     />
+                    <input
+                        type="password"
+                        class="form-input"
+                        placeholder="Mật khẩu"
+                        v-model="user.password"
+                    />
+                    
                     <p v-if="message" class="signup-message">{{ message }}</p>
                     <div class="submit">
                         <button class="btn-signup" @click="handleSignup">
@@ -57,9 +64,11 @@ export default {
     data() {
         return {
             user: {
-                fullname: "",
+                password: "",
                 email: "",
                 username: "",
+                fullname: "",
+                status: 0
             },
             message: "",
             loading: false,
@@ -73,6 +82,7 @@ export default {
         async handleSignup() {
             try {
                 this.$data.loading = true;
+                console.log(this.$data.user)
                 const res = await authService.signup(this.$data.user);
                 this.$data.loading = false;
                 this.$data.signupSuccess = true;

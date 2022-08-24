@@ -35,7 +35,12 @@ export default {
         async handleAddToCart() {
             try {
                 const response = await cartService.add(this.$props.product.id);
-                this.$store.dispatch("setGlobalEvent", {status: true, message: "Thêm thành công sản phẩm"})
+                this.$store.dispatch("setGlobalEvent", {
+                    status: true, 
+                    type: "success",
+                    tittle: "Thành công",
+                    message: "Sản phẩm được thêm vào giỏ hàng"
+                })
                 router.push("/user/cart")
             } catch (error) {
                 alert(error.message);

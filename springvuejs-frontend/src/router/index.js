@@ -14,6 +14,7 @@ import CustomerBill from '../components/CustomerBill.vue';
 import CustomerCart from '../components/CustomerCart.vue';
 import CustomerPage from '../pages/CustomerPage.vue';
 import AccessDeniedPage from '../pages/AccessDeniedPage.vue';
+import AuthAccountPage from '../pages/AuthAccountPage.vue';
 import NotFoundPage from '../pages/NotFoundPage.vue';
 
 const routes = [
@@ -88,6 +89,10 @@ const routes = [
             requireAuth: true,
             role: 'user'
         }
+    },
+    {
+        path: "/active", 
+        component: AuthAccountPage
     },
     {
         path: "/:catchAll(.*)", 

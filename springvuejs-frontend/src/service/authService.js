@@ -14,6 +14,12 @@ const authService = {
         var response = await axiosClient.post(url, params);
         console.log("signup xong");
         return response;
+    },
+
+    active: async ({username, code}) => {
+        const url = `/active?username=${username}&code=${code}`;
+        const response = await axiosClient.post(url);
+        return response;
     }
 }
 

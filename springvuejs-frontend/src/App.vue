@@ -10,6 +10,7 @@ export default {
     watch: {
         '$store.state.globalEvent.status': function() {
             if(this.$store.state.globalEvent.status) ElNotification({
+                type: this.$store.state.globalEvent.type,
                 title: "Thông báo",
                 message: this.$store.state.globalEvent.message,
             });

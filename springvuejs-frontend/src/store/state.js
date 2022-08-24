@@ -5,6 +5,8 @@ export default {
     userid: "",
     globalEvent: {
         status: false,
+        type: "",
+        title: "",
         message: ""
     }
 }

@@ -202,7 +202,12 @@ export default {
             try {
                 const response = await productService.createOrUpdate( this.$data.product);
                 this.$emit("closePopup", response);
-                this.$store.dispatch("setGlobalEvent", {status: true, message: "Thêm sản phẩm thành công"})
+                this.$store.dispatch("setGlobalEvent", {
+                    status: true, 
+                    type: "success",
+                    tittle: "Thành công",
+                    message: "Thêm sản phẩm thành công"
+                })
             } catch (error) {
                 alert(error.message);
             }
@@ -217,7 +222,12 @@ export default {
                 this.updatedProduct.newPrice = this.isUpdatingProduct.newPrice;
                 this.updatedProduct.categoryCode = this.isUpdatingProduct.categoryCode;
                 this.$emit("closePopup")
-                this.$store.dispatch("setGlobalEvent", {status: true, message: "Cập nhật sản phẩm thành công"})
+                this.$store.dispatch("setGlobalEvent", {
+                    status: true, 
+                    type: "success",
+                    tittle: "Thành công",
+                    message: "Cập nhật sản phẩm thành công"
+                })
             } catch (error) {
                 alert(error.message);
             }

@@ -7,7 +7,15 @@
                         <div class="footer-item">
                             <div class="heading">Giới thiệu</div>
                             <ul class="content">
-                                Công ty thương mại điện tử
+                                <div class="content-item">
+                                    Công ty thương mại điện tử
+                                </div>
+                                <div class="content-item">
+                                    Mua bán các sản phẩm
+                                </div>
+                                <div class="content-item">
+                                    Nhận code web
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -19,6 +27,9 @@
                                     <i class="fa-solid fa-location-dot"></i
                                     >Vinh, Nghệ An
                                 </div>
+                                <div class="content-item">
+                                    <i class="fa-solid fa-school"></i>Đại học Bách Khoa Hà Nội
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -28,6 +39,11 @@
                             <ul class="content">
                                 <div class="content-item">
                                     <i class="fa-solid fa-phone"></i>0522081512
+                                </div>
+                            </ul>
+                            <ul class="content">
+                                <div class="content-item">
+                                    <i class="fa-solid fa-envelope"></i>nguyenduong985911@gmail.com
                                 </div>
                             </ul>
                         </div>
@@ -60,10 +76,10 @@ export default {
 
 <style scoped>
 .footer-wrapper {
-    position: fixed;
+    /* position: fixed;
     bottom: 0;
     left: 0;
-    right: 0;
+    right: 0; */
 }
 
 .footer-content {
@@ -90,8 +106,14 @@ export default {
     font-size: 14px
 }
 
+.content-item {
+    margin-bottom: 8px;
+}
+
 .content-item i{
+    width: 20px;
     margin-right: 8px;
+    text-align: center;
 }
 
 .footer-bottom {

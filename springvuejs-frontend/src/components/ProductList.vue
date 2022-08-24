@@ -35,7 +35,7 @@ export default {
     data() {
         return {
             currentPage: 1,
-            itemPerPage: 3
+            itemPerPage: 10
         };
     },
     watch: {
@@ -80,5 +80,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 50px 0;
 }
 </style>

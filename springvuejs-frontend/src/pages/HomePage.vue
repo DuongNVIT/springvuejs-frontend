@@ -82,7 +82,7 @@ export default {
 
         async getAllProducts(newPage = 0) {
             try {
-                const response = await productService.getAll(newPage, 3);
+                const response = await productService.getAll(newPage, 10);
                 this.$data.products = response;
             } catch (e) {
                 alert(e.message);
@@ -94,7 +94,7 @@ export default {
                 const response = await productService.getProductsByCategory(
                     categoryCode,
                     newPage,
-                    3
+                    10
                 );
                 this.$data.products = response;
             } catch (error) {

@@ -19,7 +19,7 @@ const productService = {
     },
 
     async createOrUpdate(param) {
-        const url = `/products`;
+        const url = `/admin/products`;
         const response = await axiosClient.post(url, param);
         console.log(response);
         return response;
@@ -34,7 +34,7 @@ const productService = {
     },
 
     async delete(productId) {
-        const url = `/products/${productId}`;
+        const url = `/admin/products/${productId}`;
         const response = await axiosClient.delete(url);
         return response;
     }

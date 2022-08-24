@@ -15,7 +15,7 @@ const adminService = {
 		console.log(userProductId, statusId);
 		const url = `/admin/products/status?userProductId=${userProductId}&statusId=${statusId}`;
 		console.log(url);
-		const response = await axiosClient.post(url);
+		const response = await axiosClient.put(url);
 		return response;
 	},
 	getAllBill: async () => {

@@ -29,7 +29,7 @@ axiosClient.interceptors.response.use((response) => {
 
 const imageService = {
 	upload: async (file) => {
-		const url = "/upload";
+		const url = "/admin/upload";
 		const response = await axiosClient.post(url, file);
 		console.log(response);
 		return response;

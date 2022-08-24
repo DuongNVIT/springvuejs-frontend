@@ -27,6 +27,7 @@
 
 <script>
 import cartService from "../service/cartService.js";
+import router from "../router/index.js";
 export default {
     name: "ProductItem",
     props: ["product"],
@@ -35,6 +36,7 @@ export default {
             try {
                 const response = await cartService.add(this.$props.product.id);
                 this.$store.dispatch("setGlobalEvent", {status: true, message: "Thêm thành công sản phẩm"})
+                router.push("/user/cart")
             } catch (error) {
                 alert(error.message);
             }

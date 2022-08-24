@@ -1,24 +1,25 @@
 <template>
-  <div>
     <Header />
     <div class="content">
-      <router-view />
+        <router-view />
     </div>
-  </div>
+    <Footer />
 </template>
 
 <script>
 import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
 export default {
-  name: "CustomerPage",
-  components: {
-    Header,
-  },
+    name: "CustomerPage",
+    components: {
+        Header,
+        Footer,
+    },
 };
 </script>
 
 <style scoped>
 .content {
-  margin-top: 60px;
+    margin-top: 60px;
 }
 </style>

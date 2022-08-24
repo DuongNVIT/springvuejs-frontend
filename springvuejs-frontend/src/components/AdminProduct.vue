@@ -124,7 +124,6 @@ export default {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 100px;
 }
 .content {
     margin-top: 160px;
@@ -134,7 +133,8 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px
+    padding: 20px;
+    margin-bottom: 100px;
 }
 
 .heading {

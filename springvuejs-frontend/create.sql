@@ -60,8 +60,8 @@ create table product (
 
 alter table product add constraint fk_product_category foreign key(categoryid) references category(id);
 
-drop table if exists user_product;
-create table user_product (
+drop table if exists user_product_status;
+create table user_product_status (
 	id bigint not null primary key auto_increment,
     productid bigint not null,
     userid bigint not null,
@@ -82,9 +82,9 @@ create table product_status (
     modifiedby varchar(255)
 );
 
-alter table user_product add constraint fk_user_product_status foreign key(statusid) references product_status(id);
-alter table user_product add constraint fk_user_product_user foreign key(userid) references user(id);
-alter table user_product add constraint fk_user_product_product foreign key(productid) references product(id);
+alter table user_product_status add constraint fk_user_product_status foreign key(statusid) references product_status(id);
+alter table user_product_status add constraint fk_user_product_user foreign key(userid) references user(id);
+alter table user_product_status add constraint fk_user_product_product foreign key(productid) references product(id);
 
 drop table if exists user_rating;
 create table user_rating (

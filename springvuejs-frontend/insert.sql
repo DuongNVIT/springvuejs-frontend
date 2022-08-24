@@ -27,15 +27,34 @@ VALUES ('https://s3.ap-southeast-1.amazonaws.com/duongnv/1660024951853-download.
 INSERT INTO `springvuejs`.`product` (`thumbnail`, `name`, `oldprice`, `newprice`, `categoryid`) 
 VALUES ('https://s3.ap-southeast-1.amazonaws.com/duongnv/1660024951853-download.jpg', 'Tủ lạnh', '15', '16', '4');
 
+INSERT INTO `springvuejs`.`product` (`thumbnail`, `name`, `oldprice`, `newprice`, `categoryid`) 
+VALUES ('https://s3.ap-southeast-1.amazonaws.com/duongnv/1660021130837-download_(2).jpg', 'Quần áo mới tinh', '12', '13', '1');
+INSERT INTO `springvuejs`.`product` (`thumbnail`, `name`, `oldprice`, `newprice`, `categoryid`) 
+VALUES ('https://s3.ap-southeast-1.amazonaws.com/duongnv/1660021130837-download_(2).jpg', 'Dép giầy', '13', '14', '2');
+INSERT INTO `springvuejs`.`product` (`thumbnail`, `name`, `oldprice`, `newprice`, `categoryid`) 
+VALUES ('https://s3.ap-southeast-1.amazonaws.com/duongnv/1660024951853-download.jpg', 'Sách vở', '14', '15', '3');
+INSERT INTO `springvuejs`.`product` (`thumbnail`, `name`, `oldprice`, `newprice`, `categoryid`) 
+VALUES ('https://s3.ap-southeast-1.amazonaws.com/duongnv/1660024951853-download.jpg', 'Tủ mới tinh', '15', '16', '4');
+
+INSERT INTO `springvuejs`.`product` (`thumbnail`, `name`, `oldprice`, `newprice`, `categoryid`) 
+VALUES ('https://s3.ap-southeast-1.amazonaws.com/duongnv/1660021130837-download_(2).jpg', 'Áo quần', '12', '13', '1');
+INSERT INTO `springvuejs`.`product` (`thumbnail`, `name`, `oldprice`, `newprice`, `categoryid`) 
+VALUES ('https://s3.ap-southeast-1.amazonaws.com/duongnv/1660021130837-download_(2).jpg', 'Dép quai', '13', '14', '2');
+
+INSERT INTO `springvuejs`.`product` (`thumbnail`, `name`, `oldprice`, `newprice`, `categoryid`) 
+VALUES ('https://s3.ap-southeast-1.amazonaws.com/duongnv/1660021130837-download_(2).jpg', 'Áo dài', '12', '13', '1');
+INSERT INTO `springvuejs`.`product` (`thumbnail`, `name`, `oldprice`, `newprice`, `categoryid`) 
+VALUES ('https://s3.ap-southeast-1.amazonaws.com/duongnv/1660021130837-download_(2).jpg', 'Dép cao su', '13', '14', '2');
+
 -- insert product statususer
  insert into product_status(name) values("Trong giỏ hàng");
  insert into product_status(name) values("Chờ xác nhận");
  insert into product_status(name) values("Đang giao");
  insert into product_status(name) values("Đã nhận hàng");
 
--- insert user_product
-INSERT INTO `springvuejs`.`user_product` (`productid`, `userid`, `statusid`) VALUES ('1', '2', '1');
-INSERT INTO `springvuejs`.`user_product` (`productid`, `userid`, `statusid`) VALUES ('2', '2', '2');
-INSERT INTO `springvuejs`.`user_product` (`productid`, `userid`, `statusid`) VALUES ('3', '2', '3');
-INSERT INTO `springvuejs`.`user_product` (`productid`, `userid`, `statusid`) VALUES ('4', '2', '4');
+-- insert user_product_status
+INSERT INTO `springvuejs`.`user_product_status` (`productid`, `userid`, `statusid`) VALUES ('1', '2', '1');
+INSERT INTO `springvuejs`.`user_product_status` (`productid`, `userid`, `statusid`) VALUES ('2', '2', '2');
+INSERT INTO `springvuejs`.`user_product_status` (`productid`, `userid`, `statusid`) VALUES ('3', '2', '3');
+INSERT INTO `springvuejs`.`user_product_status` (`productid`, `userid`, `statusid`) VALUES ('4', '2', '4');
 

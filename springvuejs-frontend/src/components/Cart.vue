@@ -23,7 +23,7 @@
                         </template>
                     </el-table-column>
                     <el-table-column prop="name" label="Tên sản phẩm" />
-                    <el-table-column prop="newPrice" label="Giá" />
+                    <el-table-column prop="newPrice" label="Đơn giá" />
                     <el-table-column prop="newPrice" label="Số lượng">
                         <div class="quantity">
                             <div class="decrease">-</div>
@@ -31,8 +31,8 @@
                             <div class="increase">+</div>
                         </div>
                     </el-table-column>
-                    <el-table-column prop="newPrice" label="Tổng cộng" />
-                    <el-table-column prop="id" label="Hành động">
+                    <el-table-column prop="newPrice" label="Số tiền" />
+                    <el-table-column prop="id" label="Thao tác">
                         <template class="userProductId" #default="scope">
                             <el-button
                                 type="danger"
@@ -96,7 +96,12 @@ export default {
                 const ids = this.$data.cart.map(item => item.userProductId);
                 console.log(ids)
                 const response = cartService.order(ids);
-                this.$store.dispatch("setGlobalEvent", {status: true, message: "Đặt hàng thành công"})
+                this.$store.dispatch("setGlobalEvent", {
+                    status: true, 
+                    type: "success",
+                    tittle: "Thành công",
+                    message: "Đặt hàng thành công"
+                })
                 router.push("/user/bills")
             } catch(error) {
                 alert(error.message);

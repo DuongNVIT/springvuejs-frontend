@@ -80,6 +80,9 @@ export default {
     bottom: 0;
     left: 0;
     right: 0; */
+    /* position: sticky;
+    top: 100%; */
+    margin-top:auto; 
 }
 
 .footer-content {

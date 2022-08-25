@@ -27,6 +27,9 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .category {
@@ -36,6 +39,9 @@ export default {
 body {
     font-family: "Saira Condensed", sans-serif;
     background-color: rgb(240, 235, 235);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 * {

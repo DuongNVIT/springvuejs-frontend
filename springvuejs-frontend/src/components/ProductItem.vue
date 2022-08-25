@@ -60,11 +60,13 @@ export default {
     transition: all 0.2s ease-in-out;
     border-radius: 3px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    z-index: -10;
 }
 
 .item-wrapper:hover {
     cursor: pointer;
     transform: translateY(-1px);
+    z-index: -10;
 }
 
 .item-img img {

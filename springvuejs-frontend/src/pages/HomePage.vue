@@ -1,25 +1,23 @@
 <template>
-    <div>
-        <Header @search="handleSearch" />
-        <div class="wrapper">
-            <div class="grid wide">
-                <div class="inner">
-                    <div class="row">
-                        <div class="col l-2">
-                            <Category />
-                        </div>
-                        <div class="col l-10">
-                            <ProductList
-                                :productss="products"
-                                @getNewPage="handleGetNewPage"
-                            />
-                        </div>
+    <Header @search="handleSearch" />
+    <div class="wrapper">
+        <div class="grid wide">
+            <div class="inner">
+                <div class="row">
+                    <div class="col l-2">
+                        <Category />
+                    </div>
+                    <div class="col l-10">
+                        <ProductList
+                            :productss="products"
+                            @getNewPage="handleGetNewPage"
+                        />
                     </div>
                 </div>
             </div>
         </div>
-        <Footer />
     </div>
+    <Footer />
 </template>
 
 <script>

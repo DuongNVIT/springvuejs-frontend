@@ -74,7 +74,12 @@ export default {
                 console.log(userProductId, statusId);
                 const response = await adminService.updateStatus(userProductId, statusId);
                 console.log(response);
-                this.$store.dispatch("setGlobalEvent", {status: true, message: "Cập nhật trạng thái thành công"})
+                this.$store.dispatch("setGlobalEvent", {
+                    status: true, 
+                    type: "success",
+                    tittle: "Thành công",
+                    message: "Cập nhật trạng thái thành công"
+                })
             } catch (error) {
                 console.log(error);
             }

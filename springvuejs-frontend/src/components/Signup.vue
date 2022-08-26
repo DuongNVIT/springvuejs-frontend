@@ -9,24 +9,28 @@
                         class="form-input"
                         placeholder="Email"
                         v-model="user.email"
+                        autocomplete="off"
                     />
                     <input
                         type="text"
                         class="form-input"
                         placeholder="Tên đăng nhập"
                         v-model="user.username"
+                        autocomplete="off"
                     />
                     <input
                         type="text"
                         class="form-input"
                         placeholder="Họ và tên"
                         v-model="user.fullname"
+                        autocomplete="off"
                     />
                     <input
                         type="password"
                         class="form-input"
                         placeholder="Mật khẩu"
                         v-model="user.password"
+                        autocomplete="off"
                     />
                     
                     <p v-if="message" class="signup-message">{{ message }}</p>

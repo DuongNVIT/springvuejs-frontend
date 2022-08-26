@@ -7,8 +7,9 @@
                     type="text"
                     class="form-input"
                     placeholder="Tên đăng nhập"
-                    v-model="user.username"
+                    :value="user.username"
                 />
+                {{user.username}}
                 <input
                     type="password"
                     class="form-input"
@@ -36,7 +37,7 @@ export default {
     data() {
         return {
             user: {
-                username: "",
+                username: "Duong",
                 password: "",
             },
             loginFailed: false,

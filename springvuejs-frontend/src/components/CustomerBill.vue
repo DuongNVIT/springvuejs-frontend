@@ -25,7 +25,7 @@
                         </el-table-column>
                         <el-table-column prop="name" label="Tên sản phẩm" />
                         <el-table-column prop="newPrice" label="Giá" />
-                        <el-table-column prop="newPrice" label="Số lượng" />
+                        <el-table-column prop="1" label="Số lượng" >1</el-table-column>
                         <el-table-column prop="newPrice" label="Tổng cộng" />
                         <el-table-column
                             prop="status"

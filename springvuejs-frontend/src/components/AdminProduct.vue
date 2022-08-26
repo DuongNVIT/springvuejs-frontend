@@ -76,7 +76,7 @@ export default {
         AddProduct,
     },
     created() {
-        this.getAllProducts(0, 10);
+        this.getAllProducts();
     },
     methods: {
         async getAllProducts() {
